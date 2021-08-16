@@ -1,0 +1,40 @@
+<h2>Beverages</h2>
+<mat-table class="beverage-table mat-elevation-z8" [dataSource]="beverages">
+
+  <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let beverage">{{beverage.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let beverage">{{beverage.description}}</mat-cell>
+
+  </ng-container>
+
+  <ng-container matColumnDef="caffeine">
+      <mat-header-cell *matHeaderCellDef>Caffeine</mat-header-cell>
+      <mat-cell class="caffeine-cell"
+                *matCellDef="let beverage">{{beverage.caffeine}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="servings">
+    <mat-header-cell *matHeaderCellDef>Servings</mat-header-cell>
+    <mat-cell *matCellDef="let beverage">
+      <mat-form-field>
+        <input matInput [(ngModel)]="beverage.servings" (blur)="onBlurEvent()">
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+  <h2>Total: </h2>
+  <mat-form-field [ngClass]="{ 'red' :total > 500 }">
+    <input matInput [readonly]="true" [(ngModel)]="total">
+  </mat-form-field>
